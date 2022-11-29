@@ -1,0 +1,6 @@
+# Project file /media/hassan/New Volume/Semester 7/CSR.mpf was not found.
+# Unable to open project.
+# Error opening /media/hassan/New Volume/Semester 7/CA Lab/Lab 8/RISC_V_tb.sv
+# Path name '/media/hassan/New Volume/Semester 7/CA Lab/Lab 8/RISC_V_tb.sv' doesn't exist.
+add wave vsim:/RISC_V_tb/*
+quit -sim

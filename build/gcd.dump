@@ -1,0 +1,49 @@
+
+build/gcd.elf:     file format elf32-littleriscv
+
+Contents of section .text:
+ 0000 13054000 93050000 ef00c000 93050600  ..@.............
+ 0010 6f008003 13061000 93071000 e3d8a7fe  o...............
+ 0020 ef000001 13060700 1305f5ff 6ff01fff  ............o...
+ 0030 93060000 13070000 e3d6c6fe 3307a700  ............3...
+ 0040 93861600 6ff05fff 6f000000           ....o._.o...    
+Contents of section .riscv.attributes:
+ 0000 41190000 00726973 63760001 0f000000  A....riscv......
+ 0010 05727633 32693270 3000               .rv32i2p0.      
+
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	00400513          	li	a0,4
+   4:	00000593          	li	a1,0
+   8:	00c000ef          	jal	ra,14 <factorial>
+
+0000000c <result>:
+   c:	00060593          	mv	a1,a2
+  10:	0380006f          	j	48 <stop>
+
+00000014 <factorial>:
+  14:	00100613          	li	a2,1
+  18:	00100793          	li	a5,1
+
+0000001c <Loop>:
+  1c:	fea7d8e3          	bge	a5,a0,c <result>
+  20:	010000ef          	jal	ra,30 <addition>
+
+00000024 <backfact>:
+  24:	00070613          	mv	a2,a4
+  28:	fff50513          	addi	a0,a0,-1
+  2c:	ff1ff06f          	j	1c <Loop>
+
+00000030 <addition>:
+  30:	00000693          	li	a3,0
+  34:	00000713          	li	a4,0
+
+00000038 <Loop1>:
+  38:	fec6d6e3          	bge	a3,a2,24 <backfact>
+  3c:	00a70733          	add	a4,a4,a0
+  40:	00168693          	addi	a3,a3,1
+  44:	ff5ff06f          	j	38 <Loop1>
+
+00000048 <stop>:
+  48:	0000006f          	j	48 <stop>
